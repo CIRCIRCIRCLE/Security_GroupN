@@ -23,5 +23,10 @@
 - Points from Previous work: [CICIoT2023: A Real-Time Dataset and Benchmark for Large-Scale Attacks in IoT Environment](https://mdpi-res.com/d_attachment/sensors/sensors-23-05941/article_deploy/sensors-23-05941-v2.pdf?version=1687924880) and [wataicyber](https://wataicyber.substack.com/p/comparing-classical-ml-models)
   - Feature selection: 22 important features (duration, srate, drate, syn_flag_number, psh_flag_number, ack_flag_number, ack_count, syn_count, rst_count, header_length, https, ssh, flow_duration, avg, max, tot_sum, min, iat, magnitude, radius, variance)  
   - ML models: Random Forest and Deep Neural Network are able to maintain high accuracy and F-1 score
--  
+- Models:
+  - Default Random Forest: n_estimators=100;
+  - Weight-based balanced random forest: (n_estimators=100, class_weight="balanced");
+  - Bagging-based balanced random forest: (n_estimators=100, sampling_strategy="all", replacement=True)
+- Evaluation Metrics: Accuracy, Precision, Recall, F1-score 
 ## Attack Mitagation
+- Firewall: Maybe Flower Framework based on Federated Learning?
