@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 import tensorflow as tf
@@ -27,14 +27,15 @@ Use LSTM for classification
 current_directory  = os.path.dirname(__file__)
 dataset_path = os.path.join(current_directory, '..', '..', 'datasets')
 model_path = os.path.join(current_directory, 'model', 'LSTM.h5')
-#df2 = pd.read_csv(os.path.join(dataset_path, 'df2.csv'))
-df8 = pd.read_csv(os.path.join(dataset_path, 'df8.csv'))
-#df34 = pd.read_csv(os.path.join(dataset_path, 'df34.csv'))
+df8 = pd.read_csv(os.path.join(dataset_path, 'filtered_df.csv'))
 
 #Preprocessing----------------------------------------------------------------
 # split features and labels
 X = df8.drop(columns=['label'])
 y = df8['label']
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
 
 for column in X.columns:
     if X[column].dtype == bool: X[column] = X[column].astype(int)
@@ -42,15 +43,16 @@ for column in X.columns:
 # encode labels to numerical representation
 label_encoder = LabelEncoder()
 y = label_encoder.fit_transform(y)
+print('label number', label_encoder.classes_)
 
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
 print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)  
 # (3210713, 22) (3210713,) (802679, 22) (802679,)
 
 # convert into 3D tensors (#batch_size, time_steps, seq_len)
-X_train = X_train.values.reshape((X_train.shape[0], 1, X_train.shape[1]))  
-X_test = X_test.values.reshape((X_test.shape[0], 1, X_test.shape[1]))
+X_train = X_train.reshape((X_train.shape[0], 1, X_train.shape[1]))  
+X_test = X_test.reshape((X_test.shape[0], 1, X_test.shape[1]))
 
 print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
 # (3210713, 1, 22) (3210713,) (802679, 1, 22) (802679,)
@@ -59,10 +61,10 @@ print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
 # Model Setting and training----------------------------------------------------------------
 model = tf.keras.Sequential([
     tf.keras.layers.LSTM(units=32, return_sequences=True, input_shape=(X_train.shape[1], X_train.shape[2])),  #the input represents (num of samples, time step, feature num)
-    tf.keras.layers.Dropout(0.5), 
+    tf.keras.layers.Dropout(0.2), 
     tf.keras.layers.LSTM(units=16),
     tf.keras.layers.Dropout(0.2), 
-    tf.keras.layers.Dense(8, activation='softmax')  # Adjust output units based on your number of classes
+    tf.keras.layers.Dense(len(label_encoder.classes_), activation='softmax')  # Adjust output units based on your number of classes
 ])
 
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
