@@ -29,7 +29,7 @@ These models achieved exceptional performance with accuracy, precision, recall, 
 The loss reduced from 0.065 to 0.109, and the accuracy improved from 81.05% to 95.86%.
 <img src="CW2/imgs/FLaccloss.png" alt="FLtest" width="700">
 3.__Different levels of LDP:__
-<img src="CW2/imgs/LDP.png" alt="FLtest" width="700">
+<img src="CW2/imgs/LDP.png" alt="FLtest" width="500">
 
 ### Code Instruction:   
 __Data Manipulation:__
