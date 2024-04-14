@@ -1,4 +1,5 @@
 import flwr as fl
+from flwr.server import Driver, LegacyContext, ServerApp, ServerConfig
 
 def weighted_average(metrics):
     accuracies = [num_examples * m["accuracy"] for num_examples, m in metrics]
@@ -15,12 +16,26 @@ def get_server_strategy():
         fit_metrics_aggregation_fn=weighted_average,
         evaluate_metrics_aggregation_fn=weighted_average,
         )
-    
+
+# Define config
+config = ServerConfig(num_rounds=1)
+
+# Flower ServerApp
+app = ServerApp(
+    config=config,
+    strategy=get_server_strategy(),
+)
+
+
+# Legacy mode
 if __name__ == "__main__":
-    history = fl.server.start_server(
-        server_address="0.0.0.0:8080",
-        strategy=get_server_strategy(),
-        config=fl.server.ServerConfig(num_rounds=3),
-    )
+    from flwr.server import start_server
+
+    history = start_server(
+                server_address="0.0.0.0:8080",
+                config=config,
+                strategy=get_server_strategy(),
+            )
     final_round, acc = history.metrics_distributed["accuracy"][-1]
     print(f"After {final_round} rounds of training the accuracy is {acc:.3%}")
+

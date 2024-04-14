@@ -15,7 +15,7 @@ if gpus:
     except RuntimeError as e:
         print(e)
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 print('GPU is successfully loaded')
 print('-------------------------------------')
 
@@ -26,7 +26,7 @@ Use CNN for classification
 #path direction---------------------------------------------------------
 current_directory  = os.path.dirname(__file__)
 dataset_path = os.path.join(current_directory, '..', '..', 'datasets')
-model_path = os.path.join(current_directory, 'model', 'CNN.h5')
+model_path = os.path.join(current_directory, 'model', 'CNNfull.h5')
 df8 = pd.read_csv(os.path.join(dataset_path, 'filtered_df.csv'))
 cnt = df8['label'].value_counts()
 print(cnt)
