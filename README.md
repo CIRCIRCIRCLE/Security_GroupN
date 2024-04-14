@@ -10,6 +10,7 @@ __This repository is the assignment of ELEC0138 Security and Privacy, UCL__
 - Utilized datasets from the [CICIoT2023](https://www.unb.ca/cic/datasets/iotdataset-2023.html) dataset, or generated datasets if needed.
 - Trained various ML and DL models for intrusion detection and classification. including RF, CNN, LSTM, GRU, and a hybrid CNN+BiLSTM
 - Deployed models on the [Flower Framework](https://flower.ai/) to implement Federated Learning (FL).
+- Introduce Local Differential Privacy(LDP) to provide privacy guarantees at the individual user level before any data aggregation or analysis occurs.
 
 ### Models:  
 - RF: n_estimator=100
@@ -23,10 +24,12 @@ __This repository is the assignment of ELEC0138 Security and Privacy, UCL__
 ### Results:  
 1. __Model Test:__  
 During model training, various features were extracted from network flow data.   
-These models achieved exceptional performance with accuracy, precision, recall, and F1-score all exceeding 99%.
+These models achieved exceptional performance with accuracy, precision, recall, and F1-score with a macro accuracy over 95%.
 2. __FL Training:__   
 The loss reduced from 0.065 to 0.109, and the accuracy improved from 81.05% to 95.86%.
 <img src="CW2/imgs/FLaccloss.png" alt="FLtest" width="700">
+3.__Different levels of LDP:__
+<img src="CW2/imgs/LDP.png" alt="FLtest" width="700">
 
 ### Code Instruction:   
 __Data Manipulation:__
