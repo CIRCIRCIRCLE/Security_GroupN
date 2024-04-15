@@ -2,7 +2,20 @@
 __This repository is the assignment of ELEC0138 Security and Privacy, UCL__   
 
 ## 1. DEFINING A THREAT MODEL AND A SECURITY
+### Introductions:
+Series of significant threats to public transportation systems are caused by the cyber attacks, disrupting operations and compromising passenger safety. These attacks can target infrastructure and IOT devices, or passengers' devices such as signaling systems, camera, speaker, mobile phones, and ticketing platforms, leading to service outages, delays, and potential accidents. By exploiting vulnerabilities in network security, hackers can gain unauthorized access to transportation systems, manipulate schedules, and even hijack aircrafts remotely. The consequences of the attacks will cause the economic damages, public trust, and harm to passengers.
 
+Since all the attacks are simulated, the traffic will be captured using the Wireshark, they will be saved in pcacp file. These files have been converted to CSV format to facilitate their integration with machine learning in the second part, where these packets are used as the validation dataset.
+
+### Types of attacks:
+- DOS
+- DDOS
+- Spoofing
+- Botnet attacks
+- Hijacking
+- Trojan Horse attacks
+
+### Formatting the datasets
 
 ## 2. SECURITY/PRIVACY MITIGATIONS
 ### System: Intrusion Detection and Attack Classification
