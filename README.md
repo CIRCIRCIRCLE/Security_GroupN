@@ -3,7 +3,7 @@ __This repository is the assignment of ELEC0138 Security and Privacy, UCL__
 
 ## 1. DEFINING A THREAT MODEL AND A SECURITY
 ### Introductions:
-Series of significant threats to public transportation systems are caused by the cyber attacks, disrupting operations and compromising passenger safety. These attacks can target infrastructure and IOT devices, or passengers' devices such as signaling systems, camera, speaker, mobile phones, and ticketing platforms, leading to service outages, delays, and potential accidents. By exploiting vulnerabilities in network security, hackers can gain unauthorized access to transportation systems, manipulate schedules, and even hijack aircrafts remotely. The consequences of the attacks will cause the economic damages, public trust, and harm to passengers.
+Series of significant threats to public transportation systems are caused by the cyber attacks, disrupting operations and compromising passenger safety. These attacks can target infrastructure and IOT devices, or passengers' devices such as signaling systems, camera, speaker, mobile phones, and ticketing platforms, leading to service outages, delays, and potential accidents. By exploiting vulnerabilities in network security, hackers can gain unauthorized access to transportation systems, manipulate schedules, and even hijack aircrafts data remotely. The consequences of the attacks will cause the economic damages, public trust, and harm to passengers.
 
 Since all the attacks are simulated, the traffic will be captured using the Wireshark, they will be saved in pcacp file. These files have been converted to CSV format to facilitate their integration with machine learning in the second part, where these packets are used as the validation dataset.
 
@@ -14,8 +14,20 @@ Since all the attacks are simulated, the traffic will be captured using the Wire
 - Botnet attacks
 - Hijacking
 - Trojan Horse attacks
+All the PCAP files are publically accessible at the Google Drive link: https://drive.google.com/drive/folders/19UdDNUJNECT6fZTOTIUwfYENyGDXqWVU?usp=sharing
+
+Attacks were performed on a range of targets including:
+- Websites (Cloned and hosted locally on flux, code included within CW 1)
+- IOT devices
+- VMs
+- Laptops
+- Phones
 
 ### Formatting the datasets
+With the collected PCAPs all the data was formatted to same formated as the CIC IOT dataset through the use of a modified code base provided from  [CICIoT2023](https://www.unb.ca/cic/datasets/iotdataset-2023.html).
+
+This modification adapted it to run on a Kali VM. The code can be found within CW 1.
+
 
 ## 2. SECURITY/PRIVACY MITIGATIONS
 ### System: Intrusion Detection and Attack Classification
