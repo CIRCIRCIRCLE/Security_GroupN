@@ -12,15 +12,31 @@ def serve_website():
     return send_file("index.html")
 
 
-def download_website(url):
+def download_website(URL):
+    """
+    function: download_website
+
+    arg:
+        -url (string): URL of the target website to clone (e.g www.facebook.com)
+
+    returns:
+        true/false if download was a sucess
+    
+    example:
+        python3 download_website(www.facebook.com)
+
+    """
     # downloads all avaibale assets and hosts them
     try:
+        #checks website response
         response = requests.get(url)
+
+        #if active
         if response.status_code == 200:
             red_dir = "downloaded_resources"
             ensure_directory(red_dir)
             soup = BeautifulSoup(response.content, "html.parser")
-
+            #attempts to find all attached assets, including hyperlinks, images and JS scripts
             for tag in soup.find_all(["script", "link", "img"]):
                 try:
                     # download src tag
@@ -42,7 +58,7 @@ def download_website(url):
                         with open(local_href, "wb") as f:
                             f.write(requests.get(href).content)
 
-                # if it cant be download it skips it (tends to tirgger on images)
+                # if it cant be downloaded it skips it (tends to tirgger on images or payment sections)
                 except:
                     print(f"Error downloading:{tag}")
             with open("index.html", "w", encoding="utf-8") as f:
@@ -59,7 +75,7 @@ def download_website(url):
         print("An error occurred while downloading the website:", e)
         return False
 
-
+#checks directory existance
 def ensure_directory(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -69,6 +85,7 @@ if __name__ == "__main__":
     # hosts cloned website on flask local server. Same computer IP port 8000
     website_url = input("Enter the URL of the website to download and host locally: ")
 
+    #attempts to host the website
     if download_website(website_url):
         print("Website downloaded successfully.")
         app.run(host="0.0.0.0", port=8000)
