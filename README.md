@@ -43,6 +43,7 @@ This modification adapted it to run on a Kali VM. The code can be found within C
 - LSTM: Layer1: 32 units; layer2: 16 units
 - CNN + BiLSTM
 - GRU
+- BiGRU + MLP
 
 ### Results:  
 1. __Model Test:__  
