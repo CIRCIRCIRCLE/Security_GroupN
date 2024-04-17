@@ -39,21 +39,18 @@ This modification adapted it to run on a Kali VM. The code can be found within C
 
 ### Models:  
 - RF: n_estimator=100
-- CNN:   
-  <img src="CW2/imgs/CNN.png" alt="CNN" width="500">
-- LSTM:   
-  <img src="CW2/imgs/LSTM.png" alt="LSTM" width="400">
+- CNN: 2 convolutional layers with 64 filters  
+- LSTM: Layer1: 32 units; layer2: 16 units
 - CNN + BiLSTM
 - GRU
 
 ### Results:  
 1. __Model Test:__  
-During model training, various features were extracted from network flow data.   
-These models achieved exceptional performance with accuracy, precision, recall, and F1-score with a macro accuracy over 95%.
+
 2. __FL Training:__   
 The loss reduced from 0.065 to 0.109, and the accuracy improved from 81.05% to 95.86%.
 <img src="CW2/imgs/FLaccloss.png" alt="FLtest" width="700">
-3.__Different levels of LDP:__
+3. __Different levels of LDP:__
 <img src="CW2/imgs/LDP.png" alt="FLtest" width="500">
 
 ### Code Instruction:   
