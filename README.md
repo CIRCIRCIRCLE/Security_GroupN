@@ -23,6 +23,11 @@ Attacks were performed on a range of targets including:
 - Laptops
 - Phones
 
+To recreate the attacks, the following tools were used
+- DoS/DDoS  [Raven Storm]([https://www.unb.ca/cic/datasets/iotdataset-2023.html](https://github.com/Tmpertor/Raven-Storm))  [hping3 ]([https://www.unb.ca/cic/datasets/iotdataset-2023.html](https://www.kali.org/tools/hping3/#:~:text=hping3%20is%20a%20network%20tool,transfer%20files%20under%20supported%20protocols.))
+- Spoofing & Hijacking [metasploit](https://github.com/rapid7/metasploit-framework)
+- Botnet attacks [Mirai](https://github.com/jgamblin/Mirai-Source-Code)
+
 ### Formatting the datasets
 With the collected PCAPs all the data was formatted to same formated as the CIC IOT dataset through the use of a modified code base provided from  [CICIoT2023](https://www.unb.ca/cic/datasets/iotdataset-2023.html).
 
